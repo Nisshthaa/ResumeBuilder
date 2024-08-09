@@ -1,0 +1,27 @@
+body {
+  background-image: url("/static/images/bg-orange.jpeg"); /* Relative path from the CSS file */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100vh;
+  margin: 0;
+}
+
+
+.montserrat-fontstyling {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+}
+.navbar-brand {
+  margin-left: 0 px;
+  margin-right: 300px; /* Adjust the margin as needed */
+  height: 20px;
+}
+.container-fluid{
+  width:100px;
+  
+
+}
+
+

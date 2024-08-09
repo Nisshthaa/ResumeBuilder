@@ -1,0 +1,160 @@
+{% extends 'base2.html' %}
+{% block title %}Resume{% endblock %}
+{% block content %}
+<div class="main">
+    <div class="container">
+        <header>
+            {% if personal_detail %}
+                <h1>{{ personal_detail.name }}</h1>
+                {% if personal_detail.phoneno %}
+                    <p><ion-icon name="call-outline"></ion-icon> Phone: +91 {{ personal_detail.phoneno }}</p>
+                {% endif %}
+                {% if personal_detail.email %}
+                    <p><ion-icon name="mail-outline"></ion-icon> Email: {{ personal_detail.email }}</p>
+                {% endif %}
+                {% if personal_detail.state %}
+                    {% if personal_detail.city %}
+                        <p><ion-icon name="home-outline"></ion-icon> {{personal_detail.city}}, {{personal_detail.state}}</p>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            <div class="social-links">
+                {% if url_detail %}
+                    {% if url_detail.linkedin %}
+                        <p><ion-icon name="person-circle-outline"></ion-icon> LinkedIn: <a href="{{ url_detail.linkedin }}">{{ url_detail.linkedin }}</a></p>
+                    {% endif %}
+                    {% if url_detail.portfolio %}
+                        <p><ion-icon name="globe-outline"></ion-icon> Portfolio: <a href="{{ url_detail.portfolio }}">{{ url_detail.portfolio }}</a></p>
+                    {% endif %}
+                    {% if url_detail.github %}
+                        <p><ion-icon name="logo-github"></ion-icon> GitHub: <a href="{{ url_detail.github }}">{{ url_detail.github }}</a></p>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </header>
+
+        <h4 class='montserrat-fontstyling'><ion-icon name="school"></ion-icon> About Me</h4>
+        {% if personal_detail %}
+            <p>{{ personal_detail.about }}</p>
+        {% endif %}
+    </div>
+
+    <hr>
+
+    <h4 class='montserrat-fontstyling'><ion-icon name="school"></ion-icon> EDUCATION</h4>
+    <div class="table_style">
+        <table>
+            <tr>
+                <th>COURSE</th>
+                <th>PERCENTAGE/CGPA</th>
+                <th>YEAR</th>
+            </tr>
+            {% if graduation_detail %}
+                <tr>
+                    <td>{{ graduation_detail.college }}</td>
+                    <td>
+                        {% if graduation_detail.performance_type == 'percentage' %}
+                            <p>{{ graduation_detail.score }}%</p>
+                        {% elif graduation_detail.performance_type == 'cgpa' %}
+                            <p>CGPA {{ graduation_detail.score }}</p>
+                        {% endif %}
+                    </td>
+                    <td>{{ graduation_detail.start_year }}-{{ graduation_detail.end_year }}</td>
+                </tr>
+            {% endif %}
+
+            {% if seniorsecondary_detail %}
+                <tr>
+                    <td>{{ seniorsecondary_detail.school }}</td>
+                    <td>
+                        {% if seniorsecondary_detail.performance_type == 'percentage' %}
+                            {{ seniorsecondary_detail.score }}%
+                        {% elif seniorsecondary_detail.performance_type in cgpa_types %}
+                            {{ seniorsecondary_detail.score }}
+                        {% endif %}
+                    </td>
+                    <td>{{ seniorsecondary_detail.start_year }}-{{ seniorsecondary_detail.end_year }}</td>
+                </tr>
+            {% endif %}
+
+            {% if secondary_detail %}
+                <tr>
+                    <td>{{ secondary_detail.school}}</td>
+                    <td>
+                        {% if secondary_detail.performance_type == 'percentage' %}
+                            {{ secondary_detail.score }}%
+                        {% elif secondary_detail.performance_type in cgpa_types %}
+                            {{ secondary_detail.score }}
+                        {% endif %}
+                    </td>
+                    <td>{{ secondary_detail.start_year }}-{{ secondary_detail.end_year }}</td>
+                </tr>
+            {% endif %}
+        </table>
+    </div>
+
+    <hr>
+
+    <h4 class='montserrat-fontstyling'><ion-icon name="podium-outline"></ion-icon> EXPERIENCE</h4>
+    <ul>
+        {% if job_detail %}
+            {% for job in job_detail %}
+                <li>
+                    <h5><b>{{job.organisation}}</b></h5>
+                    <p><i>{{job.designation}}</i> {% if job.start_date %} | <i>{{ job.start_date }}</i> - {% endif %}{% if job.end_date %} <i>{{ job.end_date }}</i> {% endif %}</p>
+                    <p>{{job.description}}</p>
+                </li>
+            {% endfor %}
+        {% elif internship_detail %}
+            {% for intern in internship_detail %}
+                <li>
+                    <h5><b>{{intern.organisation}}</b></h5>
+                    <p><i>{{intern.designation}}</i> {% if intern.start_date %} | <i>{{ intern.start_date }}</i> - {% endif %}{% if intern.end_date %} <i>{{ intern.end_date }}</i> {% endif %}</p>
+                    <p>{{intern.description}}</p>
+                </li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+
+    <hr>
+
+    <h4 class='montserrat-fontstyling'><ion-icon name="book-outline"></ion-icon> Skills</h4>
+    <div class="skills-container">
+        {% for s in skill_detail %}
+            <div class="skill">{{ s.skill }}</div>
+        {% endfor %}
+    </div>
+
+    <hr>
+
+    <h3 class='montserrat-fontstyling'><ion-icon name="book-outline"></ion-icon> Projects</h3>
+    <ul>
+        {% if project_detail %}
+            {% for p in project_detail %}
+                <li>
+                    <h5><b>{{p.title}}</b></h5>
+                    <p>{% if p.start_date%} {{ p.start_date }} - {% endif %}{% if p.end_date%}{{ p.end_date}} {% endif %}</p>
+                    <p>{{p.description}}</p>
+                </li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+
+    <hr>
+
+    <h4 class='montserrat-fontstyling'><ion-icon name="ribbon-outline"></ion-icon> Certifications</h4>
+    <ul>
+        {% if certification_detail %}
+            {% for c in certification_detail %}
+                <li>
+                    <h5><b>{{c.training_program}}</b></h5>
+                    <p><i>{{c.organisation}}</i></p>
+                    <p>{% if c.start_date%} {{ c.start_date }} - {% endif %}{% if c.end_date%}{{ c.end_date}} {% endif %}</p>
+                </li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+
+<button onclick="window.print()">Print Resume</button>
+{% endblock %}

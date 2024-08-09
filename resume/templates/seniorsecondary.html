@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}seniorsecondary{% endblock %}
+{% block content %}
+   
+<div class="container d-flex justify-content-center mt-5 ">
+    <div class="col-md-8 bg-light p-4 rounded">
+        <form method="POST" >
+            {% csrf_token %}
+            <div>
+                <h1 class="text-center">Add SeniorSecondary details</h1>
+            </div>
+            <br>
+            {{ form.as_p }}
+            <br>
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-outline-success">Continue</button>
+              <a href="{% url 'seniorsecondary' %}" class="btn btn-success me-2 ">Skip</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

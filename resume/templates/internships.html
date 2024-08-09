@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Skills{% endblock %}
+{% block content %}
+<div class="container d-flex justify-content-center mt-5">
+    <div class="col-md-8 bg-light p-4 rounded">
+        <form method="POST" id="skill-form">
+            {% csrf_token %}
+            <div>
+                <h1 class="text-center">Add Internship Experience</h1>
+            </div>
+            <br>
+            {{ formset.management_form }}
+            <div id="formset-container">
+                {% for form in formset %}
+                    <div class="form-row">
+                        {{ form.as_p }}
+                    </div>
+                {% endfor %}
+            </div>
+            <br>
+            <div class="d-flex justify-content-between">
+                <button type="button" id="add-skill" class="btn btn-outline-success">Add another Internship Experience</button>
+                <button type="submit" class="btn btn-outline-success">Continue</button>
+                <a href="{% url 'skills' %}" class="btn btn-success me-2">Skip</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    document.getElementById('add-skill').onclick = function() {
+        var formsetContainer = document.getElementById('formset-container');
+        var newForm = formsetContainer.children[0].cloneNode(true);
+        var totalForms = document.getElementById('id_form-TOTAL_FORMS');
+        var formCount = parseInt(totalForms.value);
+
+        // Update the formset's management form to reflect the new total number of forms
+        totalForms.value = formCount + 1;
+
+        // Update the name attributes of the new form's input fields
+        var regex = new RegExp('form-(\\d+)-', 'g');
+        newForm.innerHTML = newForm.innerHTML.replace(regex, 'form-' + formCount + '-');
+        formsetContainer.appendChild(newForm);
+    }
+</script>
+{% endblock %}

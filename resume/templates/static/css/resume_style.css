@@ -1,0 +1,122 @@
+body {
+  background-image: url("/static/images/bg-orange.jpeg"); /* Relative path from the CSS file */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100vh;
+  margin: 0;
+
+}
+@media print {
+  body {
+      background-image: none; /* Remove background for print */
+  }
+
+  .social-links {
+      display: none; /* Hide social links on print */
+  }
+
+  header {
+      position: relative; /* Adjust header positioning */
+      margin-bottom: 20px; /* Space below header */
+  }
+
+  .main {
+      width: 100%; /* Make main container full width for printing */
+      border: none; /* Remove border */
+      padding: 0; /* Remove padding for print */
+  }
+
+  button {
+      display: none; /* Hide the print button */
+  }
+
+  .table_style {
+      page-break-inside: auto; /* Prevent table from breaking inside */
+  }
+
+  .table_style tr {
+      page-break-inside: avoid; /* Avoid page break within rows */
+  }
+}
+
+
+.main{
+  width:65vw;
+  border: 2px solid black;
+  font-family: Arial, sans-serif;
+  text-align: left;
+
+  margin-left: 250px;
+  margin-top: 60px;
+  padding: 6px;
+  background-color:rgb(240, 236, 232);
+}
+
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Space between skills */
+}
+
+.skill {
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.social-links {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: right;
+  margin-top: 20px;
+}
+.social-links p {
+  margin: 0;
+  padding: 2px 0;
+}
+.container {
+  position: relative;
+}
+
+header {
+
+  padding: 15px;
+}
+
+
+p {
+  margin: 5px 0;
+}
+
+
+  a {
+    color: blue; 
+    text-decoration: underline;
+    background-color: white; /* Temporary background for visibility */
+}
+
+.table_style table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table_style th, .table_style td {
+  padding: 5px 10px; /* Reduced padding for less spacing */
+  text-align: left;
+}
+
+.table_style tr {
+  border: 1px solid black;
+}
+.table_style th {
+  border: 1px solid black;
+}
+.table_style td {
+  border: 1px solid black;
+}
+
+
